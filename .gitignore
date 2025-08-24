@@ -1,0 +1,9 @@
+__pycache__/
+.venv/
+runs/
+data/*
+!data/splits/
+backend/models/*.pt
+*.pyc
+*.pyo
+.DS_Store

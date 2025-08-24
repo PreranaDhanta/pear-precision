@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+pillow
+numpy
+torch
+torchvision
+ultralytics==8.3.0
+scikit-learn
+opencv-python
+python-multipart
+pydantic-settings
+matplotlib

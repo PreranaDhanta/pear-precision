@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Pear Precision</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">🍐 Pear Precision</div>
+    <nav>
+      <button class="nav-btn active" data-panel="count">Pear Count</button>
+      <button class="nav-btn" data-panel="disease">Leaf Diseases</button>
+      <button class="nav-btn" data-panel="yield">Boxes (Yield)</button>
+      <button class="nav-btn" data-panel="spray">Spray Guide</button>
+      <button class="nav-btn" data-panel="metrics">Confusion Matrix</button>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="count" class="panel active">
+      <h1>Pear Count</h1>
+      <form id="countForm"><input type="file" id="countImg" accept="image/*"/><button>Detect</button></form>
+      <div class="result-row">
+        <div class="stat"><span id="countNum">0</span><label>Detected Pears</label></div>
+      </div>
+      <img id="countPreview" alt="Detections"/>
+    </section>
+
+    <section id="disease" class="panel">
+      <h1>Leaf Disease Classifier</h1>
+      <form id="diseaseForm"><input type="file" id="leafImg" accept="image/*"/><button>Classify</button></form>
+      <div class="result-row"><div class="stat"><span id="diseaseClass">—</span><label>Top Class</label></div></div>
+      <pre id="probs"></pre>
+    </section>
+
+    <section id="yield" class="panel">
+      <h1>Boxes Count (Yield)</h1>
+      <div class="row">
+        <label>Detected pears</label><input id="detCount" type="number" value="250"/>
+        <label>Pears per box</label><input id="ppb" type="number" value="100"/>
+        <label>Detector recall</label><input id="recall" type="number" step="0.01" value="0.9"/>
+        <button id="estimateBtn" type="button">Estimate</button>
+      </div>
+      <div class="result-row"><div class="stat"><span id="boxesOut">0</span><label>Estimated Boxes</label></div></div>
+    </section>
+
+    <section id="spray" class="panel">
+      <h1>Spray Recommendations (by Stage)</h1>
+      <select id="stage">
+        <option value="all">All stages</option>
+        <option>dormant</option><option>green_tip</option><option>pink</option>
+        <option>bloom</option><option>petal_fall</option><option>first_cover</option>
+        <option>summer</option><option>post_harvest</option>
+      </select>
+      <button id="fetchSpray" type="button">Fetch</button>
+      <div id="sprayList"></div>
+      <p class="disclaimer">
+        ⚠️ Always follow local regulations, labels, PHI/REI, and pollinator safety. This is general guidance, not a prescription.
+      </p>
+    </section>
+
+    <section id="metrics" class="panel">
+      <h1>Confusion Matrix (Leaf Classifier)</h1>
+      <img id="cm" src="confusion_matrix.png" alt="Confusion Matrix (generate via eval script)"/>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
